@@ -1,0 +1,88 @@
+# Archivos generados automáticamente por Visual Studio
+*.obj
+*.exe
+*.dll
+*.pdb
+*.cache
+*.log
+*.vspscc
+*.vssscc
+*.user
+*.suo
+*.sln.docstates
+
+# Archivos temporales y de compilación
+[Bb]in/
+[Oo]bj/
+[Tt]emp/
+*.tmp
+*.log
+*.htm
+*.ncb
+*.opensdf
+*.sdf
+*.unsuccessfulbuild
+_buildresults/
+
+# Configuración específica de usuario
+*.userprefs
+*.user
+*.csproj.user
+*.vbproj.user
+
+# Archivos de configuración específicos de IIS y local
+.vscode/
+.vs/
+.ionide/
+
+# Archivos generados por NuGet
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+.nuget/
+packages/
+**/packages/*
+
+# Archivos de configuración de IIS y temporales locales
+_ReSharper*/
+*.resharper.user
+TestResult.xml
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# Archivos de configuración de publicación y empaquetado
+publish/
+**/*.Publish.xml
+App.publish/
+*.deploy.cmd
+*.deploy-readme.txt
+*.setuplog
+# Empaquetado de ClickOnce
+*.application
+*.manifest
+*.deploy
+
+# Archivos de configuración específicos del sistema operativo
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Archivos generados por el compilador
+*.g.*
+*.generated.cs
+*.g.i.cs
+
+# Archivos de configuración de Rider/JetBrains
+.idea/
+*.DotSettings.user
+
+# Archivos de documentación
+*.docstates
+*.vspscc
+
+# Archivos de compilación antiguos
+_Releases/
