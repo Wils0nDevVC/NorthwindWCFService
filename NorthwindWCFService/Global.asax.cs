@@ -1,39 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.ServiceModel;
 using System.Web;
 
 namespace NorthwindWCFService
 {
-    public class Global : System.Web.HttpApplication
+    public class Global : HttpApplication
     {
-        protected void Application_Start(object sender, EventArgs e)
+
+        protected void Application_BeginRequest(object sender, EventArgs e)
         {
-            // Crear una instancia de ServiceHost para el servicio
-            var host = new ServiceHost(typeof(NorthwindWCFService.CustomerService));
+            var context = HttpContext.Current;
 
-            // Agregar el comportamiento de CORS a cada endpoint
-            foreach (var endpoint in host.Description.Endpoints)
+            // Lógica para manejar solicitudes OPTIONS
+            if (context.Request.HttpMethod == "OPTIONS")
             {
-                endpoint.Behaviors.Add(new CustomCorsBehavior());
+                CorsHelper.HandlePreflightRequest(context);
             }
-
-            // Abrir el host para que acepte solicitudes
-            try
+            else
             {
-                host.Open();
-                Console.WriteLine("El servicio está corriendo en: " + host.BaseAddresses[0]);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al iniciar el servicio: " + ex.Message);
+                // Agregar encabezados básicos para solicitudes no OPTIONS
+                context.Response.AddHeader("Access-Control-Allow-Origin", "*");
             }
         }
+    }
 
-        protected void Application_End(object sender, EventArgs e)
+    public static class CorsHelper
+    {
+        public static void HandlePreflightRequest(HttpContext context)
         {
-            // Código para cerrar el host si es necesario
+            context.Response.AddHeader("Access-Control-Allow-Origin", "*");
+            context.Response.AddHeader("Access-Control-Allow-Methods", "POST, PUT, DELETE");
+            context.Response.AddHeader("Access-Control-Allow-Headers", "Content-Type, Accept");
+            context.Response.AddHeader("Access-Control-Max-Age", "1728000");
+            context.Response.End();
+
+            if (HttpContext.Current.Request.HttpMethod == "OPTIONS")
+            {
+                HttpContext.Current.Response.StatusCode = 200;
+                HttpContext.Current.Response.End();
+            }
+
         }
     }
 }
